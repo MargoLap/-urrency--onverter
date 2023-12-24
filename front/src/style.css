@@ -1,0 +1,34 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  color: #b6f865;
+  background-color: #1e1e1e;
+}
+
+button {
+  background-color: transparent; /* прозрачный фон */
+  border: 3px solid #b6f865; /* рамка */
+  border-radius: 25px; /* скругление рамки */
+  box-shadow: 0px 0px 6px 0px #b6f865; /* свечение */
+  padding: 30px; /* отступ внутри */
+  font-size: 30px; /* размер текста */
+  color: #b6f865; /* цвет текста */
+  text-align: center; /* положение текста */
+  cursor: pointer; /* смена курсора при наведении */
+}
+
+button:hover {
+  box-shadow: 0px 0px 20px 0px #b6f865; /* свечение */
+}
+
+h1 {
+  font-size: 70px; /* размер текста */
+  margin-top: 20px; /* отступ сверху */
+  text-align: center; /* положение текста */
+}
