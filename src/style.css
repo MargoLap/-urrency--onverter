@@ -9,6 +9,10 @@ body {
     sans-serif;
   color: #b6f865;
   background-color: #1e1e1e;
+  background-image: url('./pictures/background-line.png');
+  background-size: 1920px 630px; /* размер фоновой картинки */
+  background-repeat: no-repeat;
+  background-position: 0px 80px; /* отступ слева и сверху для фоновой картинки */
 }
 
 button {
@@ -31,4 +35,23 @@ h1 {
   font-size: 70px; /* размер текста */
   margin-top: 20px; /* отступ сверху */
   text-align: center; /* положение текста */
+}
+
+.update-button {
+  width: 140px;
+  height: 100px;
+  margin-top: 50px;
+  margin-right: 20px;
+  float: right; /* прижать вправо */
+  background-image: url('./pictures/update.png'); /* картинка на фон */
+  background-position: center; /* отцентрировать фон */
+  background-repeat: no-repeat; /* не повторять картинку фона для заполнения всего объема кнопки */
+}
+
+.to-converter-button {
+  width: 280px;
+  height: 100px;
+  margin-top: 50px;
+  margin-right: 80px;
+  float: right; /* прижать вправо */
 }
