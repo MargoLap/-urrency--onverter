@@ -1,5 +1,7 @@
 <template>
-  <button class="to-converter-button">КОНВЕРТЕР</button>
+  <button class="to-another-page" @click="$router.push({ name: 'Converter' })">
+    КОНВЕРТЕР
+  </button>
   <button class="update-button"></button>
 </template>
 
