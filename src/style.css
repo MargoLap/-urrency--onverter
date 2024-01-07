@@ -12,9 +12,9 @@ body {
   color: #b6f865;
   background-color: #1e1e1e;
   background-image: url('./pictures/background-line.png');
-  background-size: 1920px 630px; /* размер фоновой картинки */
+  background-size: 1920px 890px; /* размер фоновой картинки */
   background-repeat: repeat-y;
-  background-position: 0px 80px; /* отступ слева и сверху для фоновой картинки */
+  background-position: 0px 5px; /* отступ слева и сверху для фоновой картинки */
 }
 
 /*---- кнопки ----*/
@@ -80,20 +80,22 @@ h1 {
 .value-table {
   width: 300px;
   height: 71px;
-  margin-top: 30px;
-  margin-bottom: 30px;
+  margin-top: 25px;
+  margin-bottom: 25px;
   border-radius: 25px;
   background: #afafaf;
-  padding-top: 25px;
+  padding-top: 20px;
+  font-size: 35px;
 }
 
 .icon-table {
   width: 180px;
-  height: 86px;
-  margin-top: 30px;
-  margin-bottom: 30px;
+  height: 81px;
+  margin-top: 25px;
+  margin-bottom: 25px;
   border-radius: 25px;
   background: #d9d9d9;
   padding-top: 10px;
   font-size: 50px;
+  color: #68bc00;
 }
