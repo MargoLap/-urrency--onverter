@@ -217,6 +217,7 @@ h1 {
       no-repeat,
     conic-gradient(#0000 30%, #b6ff55);
   -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 15px), #000 0);
+  mask: auto;
   animation: l13 1s infinite linear;
   position: absolute;
 }

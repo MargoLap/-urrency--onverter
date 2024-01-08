@@ -4,7 +4,8 @@
   </button>
   <button class="update-button"></button>
   <br class="clearer" />
-  <div class="table-strings">
+  <span v-if="loading" class="loader"></span>
+  <div v-else class="table-strings">
     <TableString />
     <TableString />
     <TableString />
@@ -42,5 +43,6 @@ import TableString from './mini-components/TableString.vue';
 export default {
   name: 'CurrencyTable',
   components: { TableString },
+  props: ['loading'],
 };
 </script>

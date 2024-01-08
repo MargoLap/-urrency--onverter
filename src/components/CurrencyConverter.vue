@@ -4,7 +4,8 @@
     К ТАБЛИЦЕ
   </button>
   <br class="clearer" />
-  <div class="converter-strings">
+  <span v-if="loading" class="loader"></span>
+  <div v-else class="converter-strings">
     <h1 class="value-converter">90.5059</h1>
     <h1 class="icon-converter">RUB</h1>
     <div class="arrows">
@@ -23,6 +24,6 @@
 <script>
 export default {
   name: 'CurrencyConverter',
-  components: {},
+  props: ['loading'],
 };
 </script>
