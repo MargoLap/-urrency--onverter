@@ -42,11 +42,11 @@ h1 {
 }
 
 /*---- текст ошибки ----*/
-/* .error {
+.error {
   font-size: 50px;
   margin-top: 100px;
   margin-left: 60px;
-} */
+}
 
 /*---- кнопка обновления ----*/
 .update-button {
@@ -80,7 +80,7 @@ h1 {
   margin-left: 17%;
   margin-bottom: 250px;
   display: grid; /* задает сетку */
-  grid-template-columns: 320px 220px 320px 180px; /* задает количество и ширину столбцов */
+  grid-template-columns: 570px 520px; /* задает количество и ширину столбцов */
 }
 
 .value-table {
@@ -92,18 +92,22 @@ h1 {
   background: #afafaf;
   padding-top: 20px;
   font-size: 35px;
+  display: inline-block;
 }
 
 .icon-table {
   width: 180px;
-  height: 81px;
+  height: 71px;
   margin-top: 25px;
+  margin-left: 30px;
   margin-bottom: 25px;
   border-radius: 25px;
   background: #d9d9d9;
   padding-top: 10px;
+  padding-bottom: 20px;
   font-size: 50px;
   color: #68bc00;
+  display: inline-block;
 }
 
 /*---- блок с конвертером ----*/
