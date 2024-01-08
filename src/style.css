@@ -41,6 +41,13 @@ h1 {
   color: #1e1e1e;
 }
 
+/*---- текст ошибки ----*/
+/* .error {
+  font-size: 50px;
+  margin-top: 100px;
+  margin-left: 60px;
+} */
+
 /*---- кнопка обновления ----*/
 .update-button {
   width: 140px;
