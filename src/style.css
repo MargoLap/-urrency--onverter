@@ -93,21 +93,27 @@ h1 {
   padding-top: 20px;
   font-size: 35px;
   display: inline-block;
+  cursor: default;
 }
 
 .icon-table {
   width: 180px;
-  height: 71px;
+  height: 81px;
   margin-top: 25px;
   margin-left: 30px;
   margin-bottom: 25px;
   border-radius: 25px;
   background: #d9d9d9;
   padding-top: 10px;
-  padding-bottom: 20px;
+  position: absolute;
   font-size: 50px;
   color: #68bc00;
   display: inline-block;
+  font-family: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
+    'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
 }
 
 /*---- блок с конвертером ----*/

@@ -17,6 +17,7 @@
         <TableString
           :tableValue="currency.Value"
           :tableIcon="currency.CharCode"
+          :nameValute="currency.Name"
         />
       </div>
     </div>
