@@ -12,7 +12,7 @@ body {
   color: #b6f865;
   background-color: #1e1e1e;
   background-image: url('./pictures/background-line.png');
-  background-size: 1920px 890px; /* размер фоновой картинки */
+  background-size: 100%; /* размер фоновой картинки */
   background-repeat: repeat-y;
   background-position: 0px 5px; /* отступ слева и сверху для фоновой картинки */
 }
@@ -69,7 +69,6 @@ h1 {
 
 /*---- блок со строками валют в таблице ----*/
 .table-strings {
-  width: 100%;
   margin-top: 100px;
   margin-left: 17%;
   margin-bottom: 250px;
@@ -98,4 +97,111 @@ h1 {
   padding-top: 10px;
   font-size: 50px;
   color: #68bc00;
+}
+
+/*---- блок с конвертером ----*/
+.converter-strings {
+  height: 300px;
+  margin-top: 10%;
+  margin-left: 8%;
+}
+
+/*---- поле цены ----*/
+.value-converter {
+  width: 360px;
+  height: 120px;
+  padding-top: 35px;
+  margin-right: 15px;
+  margin-left: 15px;
+  border-radius: 25px;
+  background: #afafaf;
+  font-size: 60px;
+  display: inline-block;
+}
+
+/*---- поле валюты ----*/
+.icon-converter {
+  width: 200px;
+  height: 120px;
+  padding-top: 35px;
+  margin-right: 15px;
+  border-radius: 25px;
+  background: #d9d9d9;
+  font-size: 60px;
+  display: inline-block;
+  color: #68bc00;
+}
+
+/*---- стрелки ----*/
+.arrows {
+  display: inline-block;
+}
+
+.arrow-1 {
+  width: 80px;
+  margin: 20px;
+}
+
+.arrow-1 div {
+  position: absolute;
+  width: 90px;
+  height: 10px;
+  background-color: rgba(122, 122, 122, 1);
+}
+.arrow-1 div::after {
+  /* верхняя часть стрелки */
+  content: '';
+  position: absolute;
+  width: 40px;
+  height: 10px;
+  top: -11px;
+  right: -8px;
+  background-color: rgba(122, 122, 122, 1);
+  transform: rotate(45deg);
+}
+.arrow-1 div::before {
+  /* нижняя часть стрелки */
+  content: '';
+  position: absolute;
+  width: 40px;
+  height: 10px;
+  top: 11px;
+  right: -8px;
+  background-color: rgba(122, 122, 122, 1);
+  transform: rotate(-45deg);
+}
+
+.arrow-2 {
+  width: 80px;
+  margin: 20px;
+  margin-top: 80px;
+}
+
+.arrow-2 div {
+  position: absolute;
+  width: 90px;
+  height: 10px;
+  background-color: rgba(122, 122, 122, 1);
+}
+.arrow-2 div::after {
+  /* нижняя часть стрелки */
+  content: '';
+  position: absolute;
+  width: 40px;
+  height: 10px;
+  top: 11px;
+  right: 58px;
+  background-color: rgba(122, 122, 122, 1);
+  transform: rotate(45deg);
+}
+.arrow-2 div::before {
+  /* верхняя часть стрелки */
+  content: '';
+  position: absolute;
+  width: 40px;
+  height: 10px;
+  top: -11px;
+  right: 58px;
+  background-color: rgba(122, 122, 122, 1);
+  transform: rotate(-45deg);
 }
