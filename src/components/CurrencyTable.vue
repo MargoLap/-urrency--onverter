@@ -34,3 +34,26 @@ export default {
   props: ['loading', 'info', 'errored'],
 };
 </script>
+
+<style scoped>
+/*---- кнопка обновления ----*/
+.update-button {
+  width: 140px;
+  height: 100px;
+  margin-top: 50px;
+  margin-right: 20px;
+  float: right; /* прижать вправо */
+  background-image: url('../pictures/update.png'); /* картинка на фон */
+  background-position: center; /* отцентрировать фон */
+  background-repeat: no-repeat; /* не повторять картинку фона для заполнения всего объема кнопки */
+}
+
+/*---- блок со строками валют в таблице ----*/
+.table-strings {
+  margin-top: 50px;
+  margin-left: 17%;
+  margin-bottom: 250px;
+  display: grid; /* задает сетку */
+  grid-template-columns: 570px 520px; /* задает количество и ширину столбцов */
+}
+</style>
