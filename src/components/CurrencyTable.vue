@@ -11,6 +11,7 @@
     </p>
   </section>
   <section v-else>
+    <p class="message">КУРСЫ ВАЛЮТ В RUB</p>
     <span v-if="loading === true" class="loader"></span>
     <div v-else class="table-strings">
       <div v-for="currency in info" :key="currency.id">

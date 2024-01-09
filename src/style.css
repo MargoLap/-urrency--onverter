@@ -13,8 +13,9 @@ body {
   background-color: #1e1e1e;
   background-image: url('./pictures/background-line.png');
   background-size: 100%; /* размер фоновой картинки */
-  background-repeat: repeat-y;
+  background-repeat: no-repeat;
   background-position: 0px 5px; /* отступ слева и сверху для фоновой картинки */
+  background-attachment: fixed;
 }
 
 /*---- кнопки ----*/
@@ -48,6 +49,15 @@ h1 {
   margin-left: 60px;
 }
 
+/*---- текст сообщения ----*/
+.message {
+  font-size: 50px;
+  margin-top: 100px;
+  margin-left: 35%;
+  font-weight: bold;
+  color: #afff4e;
+}
+
 /*---- кнопка обновления ----*/
 .update-button {
   width: 140px;
@@ -76,7 +86,7 @@ h1 {
 
 /*---- блок со строками валют в таблице ----*/
 .table-strings {
-  margin-top: 100px;
+  margin-top: 50px;
   margin-left: 17%;
   margin-bottom: 250px;
   display: grid; /* задает сетку */
@@ -89,11 +99,12 @@ h1 {
   margin-top: 25px;
   margin-bottom: 25px;
   border-radius: 25px;
-  background: #afafaf;
+  background-color: rgba(255, 255, 255, 0.8);
   padding-top: 20px;
   font-size: 35px;
   display: inline-block;
   cursor: default;
+  color: #1e1e1e;
 }
 
 .icon-table {
@@ -103,11 +114,11 @@ h1 {
   margin-left: 30px;
   margin-bottom: 25px;
   border-radius: 25px;
-  background: #d9d9d9;
+  background-color: rgba(217, 217, 217, 0.5);
   padding-top: 10px;
   position: absolute;
   font-size: 50px;
-  color: #68bc00;
+  color: #afff4e;
   display: inline-block;
   font-family: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
     'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
