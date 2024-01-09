@@ -2,7 +2,7 @@
   <button class="to-another-page" @click="$router.push({ name: 'Converter' })">
     КОНВЕРТЕР
   </button>
-  <button class="update-button"></button>
+  <button class="update-button" @click="$router.go()"></button>
   <br class="clearer" />
   <section v-if="errored === true">
     <p class="error">
