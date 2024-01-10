@@ -13,8 +13,25 @@
   <section v-else>
     <span v-if="loading" class="loader"></span>
     <div v-else class="converter-strings">
-      <input class="value-converter" />
-      <h1 class="icon-converter">RUB</h1>
+      <input
+        class="value-converter"
+        type="string"
+        v-model="messageIN"
+        :placeholder="0"
+      />
+      <form class="icon">
+        <select class="icon-converter" onchange="handleFruitChange()">
+          <option
+            v-for="currency in info"
+            :key="currency.id"
+            :value="currency.CharCode"
+            v-b-tooltip.hover
+            :title="currency.Name"
+          >
+            {{ currency.CharCode }}
+          </option>
+        </select>
+      </form>
       <div class="arrows">
         <div class="arrow-1">
           <div></div>
@@ -23,8 +40,25 @@
           <div></div>
         </div>
       </div>
-      <input class="value-converter" />
-      <h1 class="icon-converter">USD</h1>
+      <input
+        class="value-converter"
+        type="string"
+        v-model="messageIN"
+        :placeholder="0"
+      />
+      <form class="icon">
+        <select class="icon-converter" onchange="handleFruitChange()">
+          <option
+            v-for="currency in info"
+            :key="currency.id"
+            :value="currency.CharCode"
+            v-b-tooltip.hover
+            :title="currency.Name"
+          >
+            {{ currency.CharCode }}
+          </option>
+        </select>
+      </form>
     </div>
   </section>
 </template>
@@ -47,30 +81,50 @@ export default {
 /*---- поле цены ----*/
 .value-converter {
   width: 360px;
-  height: 120px;
-  padding-top: 35px;
+  height: 150px;
   margin-right: 15px;
   margin-left: 15px;
   border-radius: 25px;
   background-color: rgba(255, 255, 255, 0.8);
   font-size: 60px;
   display: inline-block;
-  cursor: default;
   color: #1e1e1e;
+  text-align: center;
+  border-color: rgba(255, 255, 255, 0.8);
+  display: inline-block;
+
+  font-weight: bold;
+}
+
+.value-converter:focus {
+  outline: none;
+  border-color: #a2ff30;
+  border-width: 3px;
 }
 
 /*---- поле валюты ----*/
+.icon {
+  display: inline-block;
+}
 .icon-converter {
   width: 200px;
-  height: 120px;
-  padding-top: 35px;
+  height: 155px;
   margin-right: 15px;
   border-radius: 25px;
   background: #d9d9d9;
   font-size: 60px;
-  display: inline-block;
+  font-weight: bold;
   color: #afff4e;
   background-color: rgba(217, 217, 217, 0.5);
+  cursor: pointer;
+  text-align: center;
+  appearance: none; /* убрать стрелку у выбора валют */
+}
+
+.icon-converter:focus {
+  outline: none;
+  border-color: #a2ff30;
+  border-width: 3px;
 }
 
 /*---- стрелки ----*/
