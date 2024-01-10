@@ -13,14 +13,9 @@
   <section v-else>
     <span v-if="loading" class="loader"></span>
     <div v-else class="converter-strings">
-      <input
-        class="value-converter"
-        type="string"
-        v-model="messageIN"
-        :placeholder="0"
-      />
+      <input class="value-converter" type="string" placeholder="0" />
       <form class="icon">
-        <select class="icon-converter" onchange="handleFruitChange()">
+        <select class="icon-converter">
           <option
             v-for="currency in info"
             :key="currency.id"
@@ -40,14 +35,9 @@
           <div></div>
         </div>
       </div>
-      <input
-        class="value-converter"
-        type="string"
-        v-model="messageIN"
-        :placeholder="0"
-      />
+      <input class="value-converter" type="string" placeholder="0" />
       <form class="icon">
-        <select class="icon-converter" onchange="handleFruitChange()">
+        <select class="icon-converter">
           <option
             v-for="currency in info"
             :key="currency.id"
@@ -67,6 +57,8 @@
 export default {
   name: 'CurrencyConverter',
   props: ['loading', 'info', 'errored'],
+  data() {},
+  methods: {},
 };
 </script>
 

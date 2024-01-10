@@ -1,5 +1,7 @@
 <template>
-  <h1 class="value-table">{{ tableValue }}</h1>
+  <h1 class="value-table">
+    {{ (Math.floor((tableValue / tableNominal) * 100000) / 100000).toFixed(5) }}
+  </h1>
   <span class="icon-table" v-b-tooltip.hover :title="nameValute">{{
     tableIcon
   }}</span>
@@ -8,7 +10,13 @@
 <script>
 export default {
   name: 'TableString',
-  props: ['tableValue', 'tableIcon', 'nameValute'],
+  props: ['tableValue', 'tableNominal', 'tableIcon', 'nameValute'],
+  methods: {
+    // fixLenght(value, nominal) {
+    //   let result = (value / nominal).toString();
+    //   return result.replace(/^[0-9.]+$/);
+    // },
+  },
 };
 </script>
 

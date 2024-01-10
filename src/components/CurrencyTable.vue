@@ -17,6 +17,7 @@
       <div v-for="currency in info" :key="currency.id">
         <TableString
           :tableValue="currency.Value"
+          :tableNominal="currency.Nominal"
           :tableIcon="currency.CharCode"
           :nameValute="currency.Name"
         />
