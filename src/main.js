@@ -4,9 +4,6 @@ import App from './App.vue';
 
 import CurrencyTable from './components/CurrencyTable.vue';
 import CurrencyConverter from './components/CurrencyConverter.vue';
-//
-//import CurrencyConverter_Copy from './components/CurrencyConverter copy.vue';
-//
 
 // создание роутера для перехода по адресам
 const router = createRouter({

@@ -30,3 +30,16 @@ export default {
   },
 };
 </script>
+
+<!-- 
+
+this.info.RUB = {
+  ID: 'R09409F',
+  NumCode: '673',
+  CharCode: 'RUB',
+  Nominal: 1,
+  Name: 'Российский рубль',
+  Value: 1,
+  Previous: 1,
+};
+}, -->

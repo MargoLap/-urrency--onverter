@@ -15,7 +15,8 @@
     <div v-else class="converter-strings">
       <input
         class="value-converter"
-        placeholder="0.00"
+        placeholder="0"
+        @click="() => (calc1 = '')"
         @keyup="(e) => calcInput_1(e)"
         :value="calc1"
       />
@@ -47,7 +48,8 @@
       </button>
       <input
         class="value-converter"
-        placeholder="0.00"
+        placeholder="0"
+        @click="() => (calc2 = '')"
         @keyup="(e) => calcInput_2(e)"
         :value="calc2"
       />
@@ -143,7 +145,7 @@ export default {
                     this.info[elem1].Value) /
                   (this.info[elem2].Nominal * this.info[elem2].Value);
 
-                this.calc2 = (Math.floor(c * 100000) / 100000).toFixed(2);
+                this.calc2 = Math.floor(c * 100) / 100;
               }
             }
           }
@@ -160,7 +162,7 @@ export default {
                     this.info[elem2].Nominal *
                     this.info[elem2].Value) /
                   (this.info[elem1].Nominal * this.info[elem1].Value);
-                this.calc1 = (Math.floor(c * 100000) / 100000).toFixed(2);
+                this.calc1 = Math.floor(c * 100) / 100;
               }
             }
           }
