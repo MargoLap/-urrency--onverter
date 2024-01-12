@@ -13,9 +13,19 @@
   <section v-else>
     <span v-if="loading" class="loader"></span>
     <div v-else class="converter-strings">
-      <input class="value-converter" type="string" placeholder="0" />
+      <input
+        class="value-converter"
+        placeholder="0.00"
+        @keyup="(e) => calcInput_1(e)"
+        :value="calc1"
+      />
       <form class="icon">
-        <select class="icon-converter">
+        <select
+          class="icon-converter"
+          :value="valute1"
+          @change="(e) => onChange1(e)"
+        >
+          <option v-b-tooltip.hover title="Российский рубль">RUB</option>
           <option
             v-for="currency in info"
             :key="currency.id"
@@ -27,17 +37,26 @@
           </option>
         </select>
       </form>
-      <div class="arrows">
+      <button class="arrows" @click="swapValute()">
         <div class="arrow-1">
           <div></div>
         </div>
         <div class="arrow-2">
           <div></div>
         </div>
-      </div>
-      <input class="value-converter" type="string" placeholder="0" />
+      </button>
+      <input
+        class="value-converter"
+        placeholder="0.00"
+        @keyup="(e) => calcInput_2(e)"
+        :value="calc2"
+      />
       <form class="icon">
-        <select class="icon-converter">
+        <select
+          class="icon-converter"
+          :value="valute2"
+          @change="(e) => onChange2(e)"
+        >
           <option
             v-for="currency in info"
             :key="currency.id"
@@ -47,6 +66,7 @@
           >
             {{ currency.CharCode }}
           </option>
+          <option v-b-tooltip.hover title="Российский рубль">RUB</option>
         </select>
       </form>
     </div>
@@ -57,8 +77,97 @@
 export default {
   name: 'CurrencyConverter',
   props: ['loading', 'info', 'errored'],
-  data() {},
-  methods: {},
+  data() {
+    return {
+      valute1: 'RUB',
+      valute2: 'USD',
+      calc1: '',
+      calc2: '',
+      firstInputSelected: true,
+    };
+  },
+
+  methods: {
+    onChange1(e) {
+      this.valute1 = e.target.value; // смена валюты
+      if (this.calc1 !== '') this.calcInput_1(this.calc1); // перерасчет, если это не первый выбор валюты
+    },
+    onChange2(e) {
+      this.valute2 = e.target.value;
+      if (this.calc2 !== '') this.calcInput_2(this.calc2);
+    },
+    swapValute() {
+      // меняем местави валюты вместе с их значениями
+      let tmp = this.valute1;
+      this.valute1 = this.valute2;
+      this.valute2 = tmp;
+      tmp = this.calc1;
+      this.calc1 = this.calc2;
+      this.calc2 = tmp;
+    },
+    calcInput_1: function (e) {
+      this.firstInputSelected = true; // введено в первый инпут
+      this.calculate(e); // конвертируем значение для второго инпута
+    },
+    calcInput_2: function (e) {
+      this.firstInputSelected = false; // введено во второй инпут
+      this.calculate(e); // конвертируем значение для первого инпута
+    },
+    calculate: function (e) {
+      if (e === this.calc1) {
+        // если производится перерасчет
+        var valueInput = this.calc1;
+      } else if (e === this.calc2) {
+        // если производится перерасчет
+        valueInput = this.calc2;
+      } else {
+        valueInput = e.target.value; // значение которое ввели в input
+      }
+      if (isNaN(valueInput)) {
+        this.calc2 = '';
+        this.calc1 = '';
+        return;
+      }
+      if (this.firstInputSelected) {
+        // если ввлд в 1-ый инпут
+        this.calc1 = valueInput;
+        for (let elem1 in this.info) {
+          if (this.info[elem1].CharCode === this.valute1) {
+            // определяем первую валюту
+            for (let elem2 in this.info) {
+              if (this.info[elem2].CharCode === this.valute2) {
+                // определяем вторую валюту
+                let c =
+                  (valueInput *
+                    this.info[elem1].Nominal *
+                    this.info[elem1].Value) /
+                  (this.info[elem2].Nominal * this.info[elem2].Value);
+
+                this.calc2 = (Math.floor(c * 100000) / 100000).toFixed(2);
+              }
+            }
+          }
+        }
+      } else {
+        // если ввлд во 2-ый инпут
+        this.calc2 = valueInput;
+        for (let elem1 in this.info) {
+          if (this.info[elem1].CharCode === this.valute1) {
+            for (let elem2 in this.info) {
+              if (this.info[elem2].CharCode === this.valute2) {
+                let c =
+                  (valueInput *
+                    this.info[elem2].Nominal *
+                    this.info[elem2].Value) /
+                  (this.info[elem1].Nominal * this.info[elem1].Value);
+                this.calc1 = (Math.floor(c * 100000) / 100000).toFixed(2);
+              }
+            }
+          }
+        }
+      }
+    },
+  },
 };
 </script>
 
@@ -118,10 +227,11 @@ export default {
   border-color: #a2ff30;
   border-width: 3px;
 }
-
 /*---- стрелки ----*/
 .arrows {
   display: inline-block;
+  border: none;
+  box-shadow: none;
 }
 
 .arrow-1 {

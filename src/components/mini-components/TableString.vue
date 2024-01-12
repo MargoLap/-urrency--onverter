@@ -11,12 +11,6 @@
 export default {
   name: 'TableString',
   props: ['tableValue', 'tableNominal', 'tableIcon', 'nameValute'],
-  methods: {
-    // fixLenght(value, nominal) {
-    //   let result = (value / nominal).toString();
-    //   return result.replace(/^[0-9.]+$/);
-    // },
-  },
 };
 </script>
 
