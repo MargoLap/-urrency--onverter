@@ -1,9 +1,14 @@
 <template>
   <!-- при нажатии на кнопку вызывается метод роутера который переходит по адресу объекта с именем Table -->
+  <!-- TODO: Сделать правильную переадресацию -->
+  <!-- TODO: Могу вводить буквы в поля инпутов, отрицательные числа и бесконечное количество символов-->
+  <!-- TODO: Очень вывиглазные выподающие поля, текст почти не видно-->
   <button class="to-another-page" @click="$router.push({ name: 'Table' })">
     К ТАБЛИЦЕ
   </button>
+  <!-- #TODO: Не использовать br, есть margin -->
   <br class="clearer" />
+  <!-- #TODO: можно не стравнивать с true так как errored это bool-->
   <section v-if="errored === true">
     <p class="error">
       К сожалению, в данный момент мы не можем получить эту информацию,
@@ -37,6 +42,7 @@
           </option>
         </select>
       </form>
+      <!-- # TODO: Зачем изобретать велосипед? возьми картинку -->
       <button class="arrows" @click="swapValute()">
         <div class="arrow-1">
           <div></div>
@@ -86,7 +92,8 @@ export default {
       firstInputSelected: true,
     };
   },
-
+  // TODO: Нормальные и понятные название методов
+  // TODO: При нажатии на input текст пропадает, а если я хочу скопировать его? Почитай про watch ( https://vuejs.org/guide/essentials/watchers.html )
   methods: {
     onChange1(e) {
       this.valute1 = e.target.value; // смена валюты
@@ -172,6 +179,7 @@ export default {
 </script>
 
 <style scoped>
+/* TODO: Нельзя все указывать в пикселях привыкай к % и попробуй display: flex или display: grid */
 /*---- блок с конвертером ----*/
 .converter-strings {
   height: 300px;

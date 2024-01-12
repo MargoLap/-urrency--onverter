@@ -6,6 +6,7 @@ import CurrencyTable from './components/CurrencyTable.vue';
 import CurrencyConverter from './components/CurrencyConverter.vue';
 
 // создание роутера для перехода по адресам
+// TODO: Здесь этого не должно быть(СОЗДАТЬ ПРОЕКТ С router)
 const router = createRouter({
   history: createWebHistory(), // способ как браузер будет хранить историю интерфейсов
   routes: [

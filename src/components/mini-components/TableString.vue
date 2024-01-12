@@ -1,4 +1,5 @@
 <template>
+  <!-- TODO: это не таблица -->
   <h1 class="value-table">
     {{ (Math.floor((tableValue / tableNominal) * 100000) / 100000).toFixed(5) }}
   </h1>
@@ -15,6 +16,7 @@ export default {
 </script>
 
 <style scoped>
+/* TODO: Нельзя все указывать в пикселях привыкай к % и попробуй display: flex или display: grid */
 .value-table {
   width: 300px;
   height: 71px;

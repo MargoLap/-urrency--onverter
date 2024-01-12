@@ -23,6 +23,7 @@ export default {
       .get('https://www.cbr-xml-daily.ru/daily_json.js')
       .then((response) => {
         // Добавляем новую валюту
+        // TODO: Зачем если я сказал к доллару, ну можно и так вроде все правильно
         const CurRub = {
           ID: 'R09409F',
           NumCode: '673',
@@ -43,3 +44,7 @@ export default {
   },
 };
 </script>
+
+<!-- TODO: URIError: Failed to decode param '/%=%20BASE_URL%20%%3Efavicon.png' 
+иконка сайта не грузиться
+-->

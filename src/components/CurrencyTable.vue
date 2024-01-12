@@ -1,4 +1,5 @@
 <template>
+  <!-- TODO: Сделать правильную переадресацию -->
   <button class="to-another-page" @click="$router.push({ name: 'Converter' })">
     КОНВЕРТЕР
   </button>
@@ -37,6 +38,7 @@ export default {
 </script>
 
 <style scoped>
+/* TODO: Нельзя все указывать в пикселях привыкай к % и попробуй display: flex или display: grid */
 /*---- кнопка обновления ----*/
 .update-button {
   width: 140px;
