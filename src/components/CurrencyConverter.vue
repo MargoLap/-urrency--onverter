@@ -26,7 +26,6 @@
           :value="valute1"
           @change="(e) => onChange1(e)"
         >
-          <option v-b-tooltip.hover title="Российский рубль">RUB</option>
           <option
             v-for="currency in info"
             :key="currency.id"
@@ -68,7 +67,6 @@
           >
             {{ currency.CharCode }}
           </option>
-          <option v-b-tooltip.hover title="Российский рубль">RUB</option>
         </select>
       </form>
     </div>
@@ -81,8 +79,8 @@ export default {
   props: ['loading', 'info', 'errored'],
   data() {
     return {
-      valute1: 'RUB',
-      valute2: 'USD',
+      valute1: 'USD',
+      valute2: 'RUB',
       calc1: '',
       calc2: '',
       firstInputSelected: true,
@@ -131,7 +129,7 @@ export default {
         return;
       }
       if (this.firstInputSelected) {
-        // если ввлд в 1-ый инпут
+        // если ввод в 1-ый инпут
         this.calc1 = valueInput;
         for (let elem1 in this.info) {
           if (this.info[elem1].CharCode === this.valute1) {
@@ -151,7 +149,7 @@ export default {
           }
         }
       } else {
-        // если ввлд во 2-ый инпут
+        // если ввод во 2-ый инпут
         this.calc2 = valueInput;
         for (let elem1 in this.info) {
           if (this.info[elem1].CharCode === this.valute1) {

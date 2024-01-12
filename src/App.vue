@@ -21,7 +21,20 @@ export default {
   mounted() {
     axios
       .get('https://www.cbr-xml-daily.ru/daily_json.js')
-      .then((response) => (this.info = response.data.Valute))
+      .then((response) => {
+        // Добавляем новую валюту
+        const CurRub = {
+          ID: 'R09409F',
+          NumCode: '673',
+          CharCode: 'RUB',
+          Nominal: 1,
+          Name: 'Российский рубль',
+          Value: 1,
+          Previous: 1,
+        };
+        this.info = response.data.Valute;
+        this.info = { ...response.data.Valute, RUB: CurRub };
+      })
       .catch((error) => {
         console.log(error);
         this.errored = true;
@@ -30,16 +43,3 @@ export default {
   },
 };
 </script>
-
-<!-- 
-
-this.info.RUB = {
-  ID: 'R09409F',
-  NumCode: '673',
-  CharCode: 'RUB',
-  Nominal: 1,
-  Name: 'Российский рубль',
-  Value: 1,
-  Previous: 1,
-};
-}, -->
