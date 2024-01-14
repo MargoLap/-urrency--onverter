@@ -1,7 +1,5 @@
 <template>
-  <div id="app">
-    <RouterView :loading="loading" :info="info" :errored="errored" />
-  </div>
+  <RouterView :loading="loading" :info="info" :errored="errored" />
 </template>
 
 <script>

@@ -1,7 +1,6 @@
 <template>
-  <button class="to-another-page" @click="$router.push({ name: 'Converter' })">
-    КОНВЕРТЕР
-  </button>
+  <!-- нормальная переадресация через <a> -->
+  <a class="to-another-page" href="/converter">КОНВЕРТЕР</a>
   <button class="update-button" @click="$router.go()"></button>
   <br class="clearer" />
   <section v-if="errored === true">

@@ -35,6 +35,23 @@ button:hover {
   box-shadow: 0px 0px 20px 0px #b6f865; /* свечение */
 }
 
+a {
+  background-color: transparent; /* прозрачный фон */
+  border: 3px solid #b6f865; /* рамка */
+  border-radius: 25px; /* скругление рамки */
+  box-shadow: 0px 0px 6px 0px #b6f865; /* свечение */
+  padding: 30px; /* отступ внутри */
+  font-size: 30px; /* размер текста */
+  color: #b6f865; /* цвет текста */
+  text-align: center; /* положение текста */
+  cursor: pointer; /* смена курсора при наведении */
+  text-decoration: none;
+}
+
+a:hover {
+  box-shadow: 0px 0px 20px 0px #b6f865; /* свечение */
+}
+
 /*---- текст ----*/
 h1 {
   text-align: center; /* положение текста */
@@ -59,7 +76,6 @@ h1 {
 /*---- кнопки перехода по страницам ----*/
 .to-another-page {
   width: 280px;
-  height: 100px;
   margin-top: 50px;
   margin-right: 65px;
   float: right; /* прижать вправо */
