@@ -1,5 +1,5 @@
 <template>
-  <RouterView :loading="loading" :info="info" :errored="errored" />
+  <router-view :loading="loading" :info="info" :errored="errored" />
 </template>
 
 <script>
@@ -32,6 +32,7 @@ export default {
         };
         this.info = response.data.Valute;
         this.info = { ...response.data.Valute, RUB: CurRub };
+        console.log('-------' + this.info.RUB);
       })
       .catch((error) => {
         console.log(error);

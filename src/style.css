@@ -11,7 +11,7 @@ body {
     sans-serif;
   color: #b6f865;
   background-color: #1e1e1e;
-  background-image: url('./pictures/background-line.png');
+  background-image: url('./assets/background-line.png');
   background-size: 100%; /* размер фоновой картинки */
   background-repeat: no-repeat;
   background-position: 0px 5px; /* отступ слева и сверху для фоновой картинки */

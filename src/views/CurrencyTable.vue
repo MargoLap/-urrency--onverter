@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import TableString from './mini-components/TableString.vue';
+import TableString from '../components/TableString.vue';
 
 export default {
   name: 'CurrencyTable',
@@ -43,7 +43,7 @@ export default {
   margin-top: 50px;
   margin-right: 20px;
   float: right; /* прижать вправо */
-  background-image: url('../pictures/update.png'); /* картинка на фон */
+  background-image: url('../assets/update.png'); /* картинка на фон */
   background-position: center; /* отцентрировать фон */
   background-repeat: no-repeat; /* не повторять картинку фона для заполнения всего объема кнопки */
 }
