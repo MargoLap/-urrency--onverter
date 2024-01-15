@@ -12,14 +12,14 @@
   <section v-else>
     <span v-if="loading" class="loader"></span>
     <div v-else class="converter-strings">
-      <!-- поле не обнуляется при клике, максимальное количество символов 6 -->
-      <!-- @keydown.prevent="inputLimitation" -->
-
       <input
+        type="text"
         class="value-converter"
         placeholder="0"
         @keyup="(e) => calcInput1(e)"
         :value="calc1"
+        @input="filterInput1"
+        maxlength="8"
       />
       <select
         class="icon-converter"
@@ -38,12 +38,13 @@
         </option>
       </select>
       <button class="arrows" @click="swapValute()"></button>
-      <!-- поле не обнуляется при клике, максимальное количество символов 6 -->
       <input
+        type="text"
         class="value-converter"
         placeholder="0"
         @keyup="(e) => calcInput2(e)"
-        maxlength="6"
+        @input="filterInput2"
+        maxlength="8"
         :value="calc2"
       />
       <select
@@ -109,10 +110,10 @@ export default {
     },
     calculate: function (e) {
       if (e === this.calc1) {
-        // если производится перерасчет
+        // если производится перерасчет для другой валюты
         var valueInput = this.calc1;
       } else if (e === this.calc2) {
-        // если производится перерасчет
+        // если производится перерасчет для другой валюты
         valueInput = this.calc2;
       } else {
         valueInput = e.target.value; // значение которое ввели в input
@@ -125,19 +126,24 @@ export default {
       if (this.firstInputSelected) {
         // если ввод в 1-ый инпут
         this.calc1 = valueInput;
-        for (let elem1 in this.info) {
-          if (this.info[elem1].CharCode === this.valute1) {
-            // определяем первую валюту
-            for (let elem2 in this.info) {
-              if (this.info[elem2].CharCode === this.valute2) {
-                // определяем вторую валюту
-                let c =
-                  (valueInput *
-                    this.info[elem1].Nominal *
-                    this.info[elem1].Value) /
-                  (this.info[elem2].Nominal * this.info[elem2].Value);
+        if (this.calc1 === '')
+          //чтобы при пустом вводе на соседнем поле не появлялось значение ноль
+          this.calc2 = '';
+        else {
+          for (let elem1 in this.info) {
+            if (this.info[elem1].CharCode === this.valute1) {
+              // определяем первую валюту
+              for (let elem2 in this.info) {
+                if (this.info[elem2].CharCode === this.valute2) {
+                  // определяем вторую валюту
+                  let c =
+                    (valueInput *
+                      this.info[elem1].Nominal *
+                      this.info[elem1].Value) /
+                    (this.info[elem2].Nominal * this.info[elem2].Value);
 
-                this.calc2 = Math.floor(c * 100) / 100;
+                  this.calc2 = Math.floor(c * 100) / 100;
+                }
               }
             }
           }
@@ -145,19 +151,46 @@ export default {
       } else {
         // если ввод во 2-ый инпут
         this.calc2 = valueInput;
-        for (let elem1 in this.info) {
-          if (this.info[elem1].CharCode === this.valute1) {
-            for (let elem2 in this.info) {
-              if (this.info[elem2].CharCode === this.valute2) {
-                let c =
-                  (valueInput *
-                    this.info[elem2].Nominal *
-                    this.info[elem2].Value) /
-                  (this.info[elem1].Nominal * this.info[elem1].Value);
-                this.calc1 = Math.floor(c * 100) / 100;
+        if (this.calc2 === '')
+          //чтобы при пустом вводе на соседнем поле не появлялось значение ноль
+          this.calc1 = '';
+        else {
+          for (let elem1 in this.info) {
+            if (this.info[elem1].CharCode === this.valute1) {
+              for (let elem2 in this.info) {
+                if (this.info[elem2].CharCode === this.valute2) {
+                  let c =
+                    (valueInput *
+                      this.info[elem2].Nominal *
+                      this.info[elem2].Value) /
+                    (this.info[elem1].Nominal * this.info[elem1].Value);
+                  this.calc1 = Math.floor(c * 100) / 100;
+                }
               }
             }
           }
+        }
+      }
+    },
+    filterInput1: function (e) {
+      if (this.calc1 === '') {
+        if (e.target.value.match(/[^1-9]/g)) {
+          e.target.value = e.target.value.replace(/[^1-9]/g, '');
+        }
+      } else {
+        if (e.target.value.match(/[^0-9]/g)) {
+          e.target.value = e.target.value.replace(/[^0-9]/g, '');
+        }
+      }
+    },
+    filterInput2: function (e) {
+      if (this.calc2 === '') {
+        if (e.target.value.match(/[^1-9]/g)) {
+          e.target.value = e.target.value.replace(/[^1-9]/g, '');
+        }
+      } else {
+        if (e.target.value.match(/[^0-9]/g)) {
+          e.target.value = e.target.value.replace(/[^0-9]/g, '');
         }
       }
     },
