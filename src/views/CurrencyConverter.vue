@@ -3,7 +3,7 @@
   <!-- нормальная переадресация через <a> -->
   <a class="to-another-page" href="/"> К ТАБЛИЦЕ </a>
   <br class="clearer" />
-  <section v-if="errored === true">
+  <section v-if="errored">
     <p class="error">
       К сожалению, в данный момент мы не можем получить эту информацию,
       повторите попытку позже
@@ -12,62 +12,56 @@
   <section v-else>
     <span v-if="loading" class="loader"></span>
     <div v-else class="converter-strings">
+      <!-- поле не обнуляется при клике, максимальное количество символов 6 -->
+      <!-- @keydown.prevent="inputLimitation" -->
+
       <input
         class="value-converter"
         placeholder="0"
-        @click="() => (calc1 = '')"
-        @keyup="(e) => calcInput_1(e)"
+        @keyup="(e) => calcInput1(e)"
         :value="calc1"
       />
-      <form class="icon">
-        <select
-          class="icon-converter"
-          :value="valute1"
-          @change="(e) => onChange1(e)"
+      <select
+        class="icon-converter"
+        :value="valute1"
+        @change="(e) => changeValute1(e)"
+      >
+        <option
+          class="option-valute"
+          v-for="currency in info"
+          :key="currency.id"
+          :value="currency.CharCode"
+          v-b-tooltip.hover
+          :title="currency.Name"
         >
-          <option
-            v-for="currency in info"
-            :key="currency.id"
-            :value="currency.CharCode"
-            v-b-tooltip.hover
-            :title="currency.Name"
-          >
-            {{ currency.CharCode }}
-          </option>
-        </select>
-      </form>
-      <button class="arrows" @click="swapValute()">
-        <div class="arrow-1">
-          <div></div>
-        </div>
-        <div class="arrow-2">
-          <div></div>
-        </div>
-      </button>
+          {{ currency.CharCode }}
+        </option>
+      </select>
+      <button class="arrows" @click="swapValute()"></button>
+      <!-- поле не обнуляется при клике, максимальное количество символов 6 -->
       <input
         class="value-converter"
         placeholder="0"
-        @click="() => (calc2 = '')"
-        @keyup="(e) => calcInput_2(e)"
+        @keyup="(e) => calcInput2(e)"
+        maxlength="6"
         :value="calc2"
       />
-      <form class="icon">
-        <select
-          class="icon-converter"
-          :value="valute2"
-          @change="(e) => onChange2(e)"
+      <select
+        class="icon-converter"
+        :value="valute2"
+        @change="(e) => changeValute2(e)"
+      >
+        <option
+          class="option-valute"
+          v-for="currency in info"
+          :key="currency.id"
+          :value="currency.CharCode"
+          v-b-tooltip.hover
+          :title="currency.Name"
         >
-          <option
-            v-for="currency in info"
-            :key="currency.id"
-            :value="currency.CharCode"
-            v-b-tooltip.hover
-            :title="currency.Name"
-          >
-            {{ currency.CharCode }}
-          </option>
-        </select>
-      </form>
+          {{ currency.CharCode }}
+        </option>
+      </select>
     </div>
   </section>
 </template>
@@ -87,13 +81,14 @@ export default {
   },
 
   methods: {
-    onChange1(e) {
+    // нормальные имена функций
+    changeValute1(e) {
       this.valute1 = e.target.value; // смена валюты
-      if (this.calc1 !== '') this.calcInput_1(this.calc1); // перерасчет, если это не первый выбор валюты
+      if (this.calc1 !== '') this.calcInput1(this.calc1); // перерасчет, если это не первый выбор валюты
     },
-    onChange2(e) {
+    changeValute2(e) {
       this.valute2 = e.target.value;
-      if (this.calc2 !== '') this.calcInput_2(this.calc2);
+      if (this.calc2 !== '') this.calcInput2(this.calc2);
     },
     swapValute() {
       // меняем местави валюты вместе с их значениями
@@ -104,11 +99,11 @@ export default {
       this.calc1 = this.calc2;
       this.calc2 = tmp;
     },
-    calcInput_1: function (e) {
+    calcInput1: function (e) {
       this.firstInputSelected = true; // введено в первый инпут
       this.calculate(e); // конвертируем значение для второго инпута
     },
-    calcInput_2: function (e) {
+    calcInput2: function (e) {
       this.firstInputSelected = false; // введено во второй инпут
       this.calculate(e); // конвертируем значение для первого инпута
     },
@@ -203,9 +198,7 @@ export default {
 }
 
 /*---- поле валюты ----*/
-.icon {
-  display: inline-block;
-}
+
 .icon-converter {
   width: 200px;
   height: 155px;
@@ -226,79 +219,22 @@ export default {
   border-color: #a2ff30;
   border-width: 3px;
 }
+
+.option-valute {
+  color: #7a7a7a;
+  background-color: #1e1e1e;
+}
+
 /*---- стрелки ----*/
 .arrows {
-  display: inline-block;
+  width: 200px;
+  height: 150px;
   border: none;
   box-shadow: none;
-}
-
-.arrow-1 {
-  width: 80px;
-  margin: 20px;
-}
-
-.arrow-1 div {
-  position: absolute;
-  width: 90px;
-  height: 10px;
-  background-color: rgba(122, 122, 122, 1);
-}
-.arrow-1 div::after {
-  /* верхняя часть стрелки */
-  content: '';
-  position: absolute;
-  width: 40px;
-  height: 10px;
-  top: -11px;
-  right: -8px;
-  background-color: rgba(122, 122, 122, 1);
-  transform: rotate(45deg);
-}
-.arrow-1 div::before {
-  /* нижняя часть стрелки */
-  content: '';
-  position: absolute;
-  width: 40px;
-  height: 10px;
-  top: 11px;
-  right: -8px;
-  background-color: rgba(122, 122, 122, 1);
-  transform: rotate(-45deg);
-}
-
-.arrow-2 {
-  width: 80px;
-  margin: 20px;
-  margin-top: 80px;
-}
-
-.arrow-2 div {
-  position: absolute;
-  width: 90px;
-  height: 10px;
-  background-color: rgba(122, 122, 122, 1);
-}
-.arrow-2 div::after {
-  /* нижняя часть стрелки */
-  content: '';
-  position: absolute;
-  width: 40px;
-  height: 10px;
-  top: 11px;
-  right: 58px;
-  background-color: rgba(122, 122, 122, 1);
-  transform: rotate(45deg);
-}
-.arrow-2 div::before {
-  /* верхняя часть стрелки */
-  content: '';
-  position: absolute;
-  width: 40px;
-  height: 10px;
-  top: -11px;
-  right: 58px;
-  background-color: rgba(122, 122, 122, 1);
-  transform: rotate(-45deg);
+  background-color: transparent;
+  background-image: url('../assets/reverse.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
 }
 </style>

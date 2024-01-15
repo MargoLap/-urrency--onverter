@@ -3,7 +3,7 @@
   <a class="to-another-page" href="/converter">КОНВЕРТЕР</a>
   <button class="update-button" @click="$router.go()"></button>
   <br class="clearer" />
-  <section v-if="errored === true">
+  <section v-if="errored">
     <p class="error">
       К сожалению, в данный момент мы не можем получить эту информацию,
       повторите попытку позже
@@ -11,7 +11,7 @@
   </section>
   <section v-else>
     <p class="message">КУРСЫ ВАЛЮТ В RUB</p>
-    <span v-if="loading === true" class="loader"></span>
+    <span v-if="loading" class="loader"></span>
     <div v-else class="table-strings">
       <div v-for="currency in info" :key="currency.id">
         <TableString
@@ -46,6 +46,19 @@ export default {
   background-image: url('../assets/update.png'); /* картинка на фон */
   background-position: center; /* отцентрировать фон */
   background-repeat: no-repeat; /* не повторять картинку фона для заполнения всего объема кнопки */
+  background-color: transparent; /* прозрачный фон */
+  border: 3px solid #b6f865; /* рамка */
+  border-radius: 25px; /* скругление рамки */
+  box-shadow: 0px 0px 6px 0px #b6f865; /* свечение */
+  padding: 30px; /* отступ внутри */
+  font-size: 30px; /* размер текста */
+  color: #b6f865; /* цвет текста */
+  text-align: center; /* положение текста */
+  cursor: pointer; /* смена курсора при наведении */
+}
+
+.update-button:hover {
+  box-shadow: 0px 0px 20px 0px #b6f865; /* свечение */
 }
 
 /*---- блок со строками валют в таблице ----*/

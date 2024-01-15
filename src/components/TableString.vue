@@ -2,7 +2,7 @@
   <h1 class="value-table">
     {{ (Math.floor((tableValue / tableNominal) * 100000) / 100000).toFixed(5) }}
   </h1>
-  <span class="icon-table" v-b-tooltip.hover :title="nameValute">{{
+  <span class="icon-table" v-b-tooltip.d5 :title="nameValute">{{
     tableIcon
   }}</span>
 </template>
@@ -45,7 +45,7 @@ export default {
   font-family: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
     'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   font-weight: bold;
-  cursor: pointer;
+  cursor: default;
   text-align: center;
 }
 </style>
