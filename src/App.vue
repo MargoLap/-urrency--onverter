@@ -32,7 +32,6 @@ export default {
         };
         this.info = response.data.Valute;
         this.info = { ...response.data.Valute, RUB: CurRub };
-        console.log('-------' + this.info.RUB);
       })
       .catch((error) => {
         console.log(error);

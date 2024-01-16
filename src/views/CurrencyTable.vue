@@ -4,34 +4,41 @@
     <button class="update-button" @click="$router.go()"></button>
     <a class="to-another-page" href="/converter">КОНВЕРТЕР</a>
   </div>
-  <section v-if="errored">
+  <div v-if="errored">
     <p class="error">
       К сожалению, в данный момент мы не можем получить эту информацию,
       повторите попытку позже
     </p>
-  </section>
-  <section v-else>
-    <p class="message">КУРСЫ ВАЛЮТ В RUB</p>
+  </div>
+  <div v-else>
     <span v-if="loading" class="loader"></span>
-    <div v-else class="table-strings">
-      <div v-for="currency in info" :key="currency.id">
-        <TableString
-          :tableValue="currency.Value"
-          :tableNominal="currency.Nominal"
-          :tableIcon="currency.CharCode"
-          :nameValute="currency.Name"
-        />
-      </div>
+    <div v-else class="table-valute">
+      <table>
+        <tr class="title-table">
+          <th>ЦЕНА В RUB</th>
+          <th>КОД ВАЛЮТЫ</th>
+        </tr>
+        <tr v-for="currency in info" :key="currency.id">
+          <td class="value-table">
+            {{
+              (
+                Math.floor((currency.Value / currency.Nominal) * 100000) /
+                100000
+              ).toFixed(5)
+            }}
+          </td>
+          <td v-b-tooltip.d5 :title="currency.Name" class="icon-table">
+            {{ currency.CharCode }}
+          </td>
+        </tr>
+      </table>
     </div>
-  </section>
+  </div>
 </template>
 
 <script>
-import TableString from '../components/TableString.vue';
-
 export default {
   name: 'CurrencyTable',
-  components: { TableString },
   props: ['loading', 'info', 'errored'],
 };
 </script>
@@ -56,21 +63,46 @@ export default {
   box-shadow: 0px 0px 20px 0px #b6f865; /* свечение */
 }
 
-/*---- блок со строками валют в таблице ----*/
-.table-strings {
-  margin-top: 50px;
-  margin-left: 17%;
-  margin-bottom: 250px;
-  display: grid; /* задает сетку */
-  grid-template-columns: 570px 520px; /* задает количество и ширину столбцов */
+/*---- блок с таблицей ----*/
+.table-valute {
+  margin-top: 5%;
+  margin-bottom: 20%;
+  display: flex;
+  justify-content: center;
 }
 
-/*---- текст сообщения ----*/
-.message {
-  font-size: 50px;
-  margin-top: 100px;
-  margin-left: 35%;
-  font-weight: bold;
+table {
+  border-spacing: 40px 20px;
+}
+/*---- заголовки ----*/
+.title-table {
+  font-size: 40px;
   color: #afff4e;
+  text-align: center;
+}
+
+.value-table {
+  width: 300px;
+  height: 90px;
+  border-radius: 25px;
+  background-color: rgba(255, 255, 255, 0.8);
+  font-size: 35px;
+  text-align: center;
+  cursor: default;
+  color: #1e1e1e;
+  font-weight: bold;
+}
+
+.icon-table {
+  width: 300px;
+  border-radius: 25px;
+  background-color: rgba(217, 217, 217, 0.5);
+  font-size: 50px;
+  color: #afff4e;
+  font-family: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
+    'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-weight: bold;
+  cursor: default;
+  text-align: center;
 }
 </style>

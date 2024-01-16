@@ -220,7 +220,6 @@ export default {
   color: #1e1e1e;
   text-align: center;
   border-color: rgba(255, 255, 255, 0.8);
-
   font-weight: bold;
 }
 
