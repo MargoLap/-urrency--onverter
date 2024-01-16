@@ -17,15 +17,22 @@ body {
   background-position: 0px 5px; /* отступ слева и сверху для фоновой картинки */
   background-attachment: fixed;
 }
+/*---- блок с кнопками ----*/
+.button-block {
+  margin-top: 3%;
+  margin-right: 5%;
+  display: flex;
+  justify-content: end;
+}
 
-/*---- кнопки ----*/
+/*---- кнопки переходов по страницам ----*/
 a {
   background-color: transparent; /* прозрачный фон */
   border: 3px solid #b6f865; /* рамка */
   border-radius: 25px; /* скругление рамки */
   box-shadow: 0px 0px 6px 0px #b6f865; /* свечение */
   padding: 30px; /* отступ внутри */
-  font-size: 30px; /* размер текста */
+  font-size: 35px; /* размер текста */
   color: #b6f865; /* цвет текста */
   text-align: center; /* положение текста */
   cursor: pointer; /* смена курсора при наведении */
@@ -36,38 +43,11 @@ a:hover {
   box-shadow: 0px 0px 20px 0px #b6f865; /* свечение */
 }
 
-/*---- текст ----*/
-h1 {
-  text-align: center; /* положение текста */
-}
-
 /*---- текст ошибки ----*/
 .error {
   font-size: 50px;
-  margin-top: 100px;
-  margin-left: 60px;
-}
-
-/*---- текст сообщения ----*/
-.message {
-  font-size: 50px;
-  margin-top: 100px;
-  margin-left: 35%;
-  font-weight: bold;
-  color: #afff4e;
-}
-
-/*---- кнопки перехода по страницам ----*/
-.to-another-page {
-  width: 280px;
-  margin-top: 50px;
-  margin-right: 65px;
-  float: right; /* прижать вправо */
-}
-
-.clearer {
-  /* чтобы margin-top в следующем компоненте работал корректно после float: right; */
-  clear: both;
+  margin-top: 5%;
+  margin-left: 5%;
 }
 
 /*---- анимация загрузки ----*/

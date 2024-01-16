@@ -1,70 +1,73 @@
 <template>
   <!-- при нажатии на кнопку вызывается метод роутера который переходит по адресу объекта с именем Table -->
   <!-- нормальная переадресация через <a> -->
-  <a class="to-another-page" href="/"> К ТАБЛИЦЕ </a>
-  <br class="clearer" />
-  <section v-if="errored">
-    <p class="error">
-      К сожалению, в данный момент мы не можем получить эту информацию,
-      повторите попытку позже
-    </p>
-  </section>
-  <section v-else>
-    <span v-if="loading" class="loader"></span>
-    <div v-else class="converter-strings">
-      <input
-        type="text"
-        class="value-converter"
-        placeholder="0"
-        @keyup="(e) => calcInput1(e)"
-        :value="calc1"
-        @input="filterInput1"
-        maxlength="8"
-      />
-      <select
-        class="icon-converter"
-        :value="valute1"
-        @change="(e) => changeValute1(e)"
-      >
-        <option
-          class="option-valute"
-          v-for="currency in info"
-          :key="currency.id"
-          :value="currency.CharCode"
-          v-b-tooltip.hover
-          :title="currency.Name"
-        >
-          {{ currency.CharCode }}
-        </option>
-      </select>
-      <button class="arrows" @click="swapValute()"></button>
-      <input
-        type="text"
-        class="value-converter"
-        placeholder="0"
-        @keyup="(e) => calcInput2(e)"
-        @input="filterInput2"
-        maxlength="8"
-        :value="calc2"
-      />
-      <select
-        class="icon-converter"
-        :value="valute2"
-        @change="(e) => changeValute2(e)"
-      >
-        <option
-          class="option-valute"
-          v-for="currency in info"
-          :key="currency.id"
-          :value="currency.CharCode"
-          v-b-tooltip.hover
-          :title="currency.Name"
-        >
-          {{ currency.CharCode }}
-        </option>
-      </select>
+  <div class="button-block">
+    <a href="/"> К ТАБЛИЦЕ </a>
+  </div>
+  <div>
+    <div v-if="errored">
+      <p class="error">
+        К сожалению, в данный момент мы не можем получить эту информацию,
+        повторите попытку позже
+      </p>
     </div>
-  </section>
+    <div v-else>
+      <span v-if="loading" class="loader"></span>
+      <div v-else class="converter-block">
+        <input
+          type="text"
+          class="value-converter"
+          placeholder="0"
+          @keyup="(e) => calcInput1(e)"
+          :value="calc1"
+          @input="filterInput1"
+          maxlength="8"
+        />
+        <select
+          class="icon-converter"
+          :value="valute1"
+          @change="(e) => changeValute1(e)"
+        >
+          <option
+            class="option-valute"
+            v-for="currency in info"
+            :key="currency.id"
+            :value="currency.CharCode"
+            v-b-tooltip.hover
+            :title="currency.Name"
+          >
+            {{ currency.CharCode }}
+          </option>
+        </select>
+        <button class="arrows" @click="swapValute()"></button>
+        <input
+          type="text"
+          class="value-converter"
+          placeholder="0"
+          @keyup="(e) => calcInput2(e)"
+          @input="filterInput2"
+          maxlength="8"
+          :value="calc2"
+        />
+        <select
+          class="icon-converter"
+          :value="valute2"
+          @change="(e) => changeValute2(e)"
+        >
+          <option
+            class="option-valute"
+            v-for="currency in info"
+            :key="currency.id"
+            :value="currency.CharCode"
+            v-b-tooltip.hover
+            :title="currency.Name"
+          >
+            {{ currency.CharCode }}
+          </option>
+        </select>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -200,10 +203,10 @@ export default {
 
 <style scoped>
 /*---- блок с конвертером ----*/
-.converter-strings {
-  height: 300px;
+.converter-block {
   margin-top: 10%;
-  margin-left: 8%;
+  display: flex;
+  justify-content: center;
 }
 
 /*---- поле цены ----*/
@@ -211,15 +214,12 @@ export default {
   width: 360px;
   height: 150px;
   margin-right: 15px;
-  margin-left: 15px;
   border-radius: 25px;
   background-color: rgba(255, 255, 255, 0.8);
   font-size: 60px;
-  display: inline-block;
   color: #1e1e1e;
   text-align: center;
   border-color: rgba(255, 255, 255, 0.8);
-  display: inline-block;
 
   font-weight: bold;
 }
@@ -231,11 +231,9 @@ export default {
 }
 
 /*---- поле валюты ----*/
-
 .icon-converter {
   width: 200px;
   height: 155px;
-  margin-right: 15px;
   border-radius: 25px;
   background: #d9d9d9;
   font-size: 60px;
@@ -260,14 +258,13 @@ export default {
 
 /*---- стрелки ----*/
 .arrows {
-  width: 200px;
-  height: 150px;
+  width: 177px;
+  height: 160px;
   border: none;
   box-shadow: none;
-  background-color: transparent;
   background-image: url('../assets/reverse.png');
-  background-position: center;
-  background-repeat: no-repeat;
+  background-color: transparent;
   cursor: pointer;
+  outline: none;
 }
 </style>
