@@ -46,7 +46,7 @@ export default {
 <style scoped>
 /*---- кнопка обновления ----*/
 .update-button {
-  width: 140px;
+  width: 10%;
   height: auto;
   margin-right: 15px;
   background-image: url('../assets/update.png'); /* картинка на фон */
