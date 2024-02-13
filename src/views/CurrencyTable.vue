@@ -16,10 +16,14 @@
       <table>
         <tr class="title-table">
           <th>ЦЕНА В RUB</th>
-          <th>КОД ВАЛЮТЫ</th>
+          <th>ВАЛЮТА</th>
         </tr>
-        <tr v-for="currency in info" :key="currency.id">
-          <td class="value-table">
+        <tr
+          v-for="currency in info"
+          :key="currency.id"
+          :class="{ 'hide-string': !DistrToColumns(currency.SerialNum) }"
+        >
+          <td v-if="DistrToColumns(currency.SerialNum)" class="value-table">
             {{
               (
                 Math.floor((currency.Value / currency.Nominal) * 100000) /
@@ -27,7 +31,40 @@
               ).toFixed(5)
             }}
           </td>
-          <td v-b-tooltip.d5 :title="currency.Name" class="icon-table">
+          <td
+            v-if="DistrToColumns(currency.SerialNum)"
+            v-b-tooltip.d5
+            :title="currency.Name"
+            class="icon-table"
+          >
+            {{ currency.CharCode }}
+          </td>
+        </tr>
+      </table>
+      <table>
+        <tr class="title-table">
+          <th>ЦЕНА В RUB</th>
+          <th>ВАЛЮТА</th>
+        </tr>
+        <tr
+          v-for="currency in info"
+          :key="currency.id"
+          :class="{ 'hide-string': DistrToColumns(currency.SerialNum) }"
+        >
+          <td v-if="!DistrToColumns(currency.SerialNum)" class="value-table">
+            {{
+              (
+                Math.floor((currency.Value / currency.Nominal) * 100000) /
+                100000
+              ).toFixed(5)
+            }}
+          </td>
+          <td
+            v-if="!DistrToColumns(currency.SerialNum)"
+            v-b-tooltip.d5
+            :title="currency.Name"
+            class="icon-table"
+          >
             {{ currency.CharCode }}
           </td>
         </tr>
@@ -40,13 +77,20 @@
 export default {
   name: 'CurrencyTable',
   props: ['loading', 'info', 'errored'],
+
+  methods: {
+    DistrToColumns(ind) {
+      if (ind <= Object.keys(this.info).length / 2) return true;
+      else return false;
+    },
+  },
 };
 </script>
 
 <style scoped>
 /*---- кнопка обновления ----*/
 .update-button {
-  width: 10%;
+  width: 140px;
   height: auto;
   margin-right: 15px;
   background-image: url('../assets/update.png'); /* картинка на фон */
@@ -76,13 +120,13 @@ table {
 }
 /*---- заголовки ----*/
 .title-table {
-  font-size: 40px;
+  font-size: 45px;
   color: #afff4e;
   text-align: center;
 }
 
 .value-table {
-  width: 300px;
+  width: 100%;
   height: 90px;
   border-radius: 25px;
   background-color: rgba(255, 255, 255, 0.8);
@@ -93,8 +137,12 @@ table {
   font-weight: bold;
 }
 
+.hide-string {
+  display: none;
+}
+
 .icon-table {
-  width: 300px;
+  width: 50%;
   border-radius: 25px;
   background-color: rgba(217, 217, 217, 0.5);
   font-size: 50px;

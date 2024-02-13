@@ -32,6 +32,11 @@ export default {
         };
         this.info = response.data.Valute;
         this.info = { ...response.data.Valute, RUB: CurRub };
+        let count = 1;
+        for (const cur in this.info) {
+          this.info[cur].SerialNum = count;
+          count += 1;
+        }
       })
       .catch((error) => {
         console.log(error);
