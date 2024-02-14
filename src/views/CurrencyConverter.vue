@@ -211,9 +211,8 @@ export default {
 
 /*---- поле цены ----*/
 .value-converter {
-  width: 360px;
-  height: 150px;
-  margin-right: 15px;
+  width: 20%;
+  margin: 0% 0% 0% 1%;
   border-radius: 25px;
   background-color: rgba(255, 255, 255, 0.8);
   font-size: 60px;
@@ -231,8 +230,9 @@ export default {
 
 /*---- поле валюты ----*/
 .icon-converter {
-  width: 200px;
+  width: 15%;
   height: 155px;
+  margin: 0% 1% 0% 1%;
   border-radius: 25px;
   background: #d9d9d9;
   font-size: 60px;
@@ -257,13 +257,14 @@ export default {
 
 /*---- стрелки ----*/
 .arrows {
-  width: 177px;
-  height: 160px;
   border: none;
+  width: 10%;
   box-shadow: none;
   background-image: url('../assets/reverse.png');
+  background-size: contain;
   background-color: transparent;
   cursor: pointer;
   outline: none;
+  background-repeat: no-repeat;
 }
 </style>

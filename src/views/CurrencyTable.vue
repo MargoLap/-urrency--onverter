@@ -90,9 +90,9 @@ export default {
 <style scoped>
 /*---- кнопка обновления ----*/
 .update-button {
-  width: 140px;
+  width: 10%;
   height: auto;
-  margin-right: 15px;
+  margin-right: 1%;
   background-image: url('../assets/update.png'); /* картинка на фон */
   background-position: center; /* отцентрировать фон */
   background-repeat: no-repeat; /* не повторять картинку фона для заполнения всего объема кнопки */
