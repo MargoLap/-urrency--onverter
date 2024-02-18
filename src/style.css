@@ -4,69 +4,151 @@
   padding: 0;
 }
 
-/*---- фон ----*/
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  color: #b6f865;
-  background-color: #1e1e1e;
-  background-image: url('./assets/background-line.png');
-  background-size: 100%; /* размер фоновой картинки */
-  background-repeat: no-repeat;
-  background-position: 0px 5px; /* отступ слева и сверху для фоновой картинки */
-  background-attachment: fixed;
-}
-/*---- блок с кнопками ----*/
-.button-block {
-  margin-top: 3%;
-  margin-right: 5%;
-  display: flex;
-  justify-content: end;
+@media (min-width: 1200px) {
+  /*---- фон ----*/
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+      'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+      'Helvetica Neue', sans-serif;
+    color: #b6f865;
+    background-color: #1e1e1e;
+    background-image: url('./assets/background-line.png');
+    background-size: 100%; /* размер фоновой картинки */
+    background-repeat: no-repeat;
+    background-position: 0px 5px; /* отступ слева и сверху для фоновой картинки */
+    background-attachment: fixed;
+  }
+  /*---- блок с кнопками ----*/
+  .button-block {
+    margin-top: 3%;
+    margin-right: 5%;
+    display: flex;
+    justify-content: flex-end; /* Module Warning (from ./node_modules/postcss-loader/dist/cjs.js): Warning
+                                (25:3) autoprefixer: end value has mixed support, consider using flex-end instead */
+  }
+
+  /*---- кнопки переходов по страницам ----*/
+  a {
+    background-color: transparent; /* прозрачный фон */
+    border: 3px solid #b6f865; /* рамка */
+    border-radius: 25px; /* скругление рамки */
+    box-shadow: 0px 0px 6px 0px #b6f865; /* свечение */
+    padding: 2%; /* отступ внутри */
+    font-size: 2.3em; /* размер текста */
+    color: #b6f865; /* цвет текста */
+    text-align: center; /* положение текста */
+    cursor: pointer; /* смена курсора при наведении */
+    text-decoration: none;
+  }
+
+  a:hover {
+    box-shadow: 0px 0px 20px 0px #b6f865; /* свечение */
+  }
+
+  /*---- текст ошибки ----*/
+  .error {
+    font-size: 50px;
+    margin-top: 5%;
+    margin-left: 5%;
+  }
+
+  /*---- анимация загрузки ----*/
+  .loader {
+    margin-top: 10%;
+    margin-left: 45%;
+    width: 150px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(farthest-side, #a9ff3a 94%, #0000) top/15px 15px
+        no-repeat,
+      conic-gradient(#0000 30%, #b6ff55);
+    -webkit-mask: radial-gradient(
+      farthest-side,
+      #0000 calc(100% - 15px),
+      #000 0
+    );
+    mask: auto;
+    animation: l13 1s infinite linear;
+    position: absolute;
+  }
+  @keyframes l13 {
+    100% {
+      transform: rotate(1turn);
+    }
+  }
 }
 
-/*---- кнопки переходов по страницам ----*/
-a {
-  background-color: transparent; /* прозрачный фон */
-  border: 3px solid #b6f865; /* рамка */
-  border-radius: 25px; /* скругление рамки */
-  box-shadow: 0px 0px 6px 0px #b6f865; /* свечение */
-  padding: 2%; /* отступ внутри */
-  font-size: 2.3em; /* размер текста */
-  color: #b6f865; /* цвет текста */
-  text-align: center; /* положение текста */
-  cursor: pointer; /* смена курсора при наведении */
-  text-decoration: none;
-}
+@media (min-width: 300px) and (max-width: 1199.98px) {
+  /*---- фон ----*/
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+      'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+      'Helvetica Neue', sans-serif;
+    color: #b6f865;
+    background-color: #1e1e1e;
+    background-image: url('./assets/background-line-min.png');
+    background-size: 100%; /* размер фоновой картинки */
+    background-repeat: no-repeat;
+    background-position: 0px 45%; /* отступ слева и сверху для фоновой картинки */
+    background-attachment: fixed;
+  }
 
-a:hover {
-  box-shadow: 0px 0px 20px 0px #b6f865; /* свечение */
-}
+  /*---- блок с кнопками ----*/
+  .button-block {
+    margin-top: 10%;
+    margin-right: 6%;
+    display: flex;
+    justify-content: flex-end; /* Module Warning (from ./node_modules/postcss-loader/dist/cjs.js): Warning
+                                (25:3) autoprefixer: end value has mixed support, consider using flex-end instead */
+  }
 
-/*---- текст ошибки ----*/
-.error {
-  font-size: 50px;
-  margin-top: 5%;
-  margin-left: 5%;
-}
+  /*---- кнопки переходов по страницам ----*/
+  a {
+    background-color: transparent; /* прозрачный фон */
+    border: 2px solid #b6f865; /* рамка */
+    border-radius: 15px; /* скругление рамки */
+    box-shadow: 0px 0px 5px 0px #b6f865; /* свечение */
+    padding: 4%; /* отступ внутри */
+    font-size: 110%; /* размер текста */
+    color: #b6f865; /* цвет текста */
+    text-align: center; /* положение текста */
+    cursor: pointer; /* смена курсора при наведении */
+    text-decoration: none;
+  }
 
-/*---- анимация загрузки ----*/
-.loader {
-  margin-top: 10%;
-  margin-left: 45%;
-  width: 150px;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: radial-gradient(farthest-side, #a9ff3a 94%, #0000) top/15px 15px
-      no-repeat,
-    conic-gradient(#0000 30%, #b6ff55);
-  -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 15px), #000 0);
-  mask: auto;
-  animation: l13 1s infinite linear;
-  position: absolute;
-}
-@keyframes l13 {
-  100% {
-    transform: rotate(1turn);
+  a:hover {
+    box-shadow: 0px 0px 15px 0px #b6f865; /* свечение */
+  }
+
+  /*---- текст ошибки ----*/
+  .error {
+    font-size: 150%;
+    margin-top: 20%;
+    margin-left: 10%;
+  }
+
+  /*---- анимация загрузки ----*/
+  .loader {
+    margin-top: 30%;
+    margin-left: 40%;
+    width: 25%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(farthest-side, #a9ff3a 94%, #0000) top/15px 15px
+        no-repeat,
+      conic-gradient(#0000 30%, #b6ff55);
+    -webkit-mask: radial-gradient(
+      farthest-side,
+      #0000 calc(100% - 15px),
+      #000 0
+    );
+    mask: auto;
+    animation: l13 1s infinite linear;
+    position: absolute;
+  }
+  @keyframes l13 {
+    100% {
+      transform: rotate(1turn);
+    }
   }
 }

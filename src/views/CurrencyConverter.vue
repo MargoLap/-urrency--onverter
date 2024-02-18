@@ -14,57 +14,61 @@
     <div v-else>
       <span v-if="loading" class="loader"></span>
       <div v-else class="converter-block">
-        <input
-          type="text"
-          class="value-converter"
-          placeholder="0"
-          @keyup="(e) => calcInput1(e)"
-          :value="calc1"
-          @input="filterInput1"
-          maxlength="8"
-        />
-        <select
-          class="icon-converter"
-          :value="valute1"
-          @change="(e) => changeValute1(e)"
-        >
-          <option
-            class="option-valute"
-            v-for="currency in info"
-            :key="currency.id"
-            :value="currency.CharCode"
-            v-b-tooltip.hover
-            :title="currency.Name"
+        <div class="valute1">
+          <input
+            type="text"
+            class="value-converter"
+            placeholder="0"
+            @keyup="(e) => calcInput1(e)"
+            :value="calc1"
+            @input="filterInput1"
+            maxlength="8"
+          />
+          <select
+            class="icon-converter"
+            :value="valute1"
+            @change="(e) => changeValute1(e)"
           >
-            {{ currency.CharCode }}
-          </option>
-        </select>
+            <option
+              class="option-valute"
+              v-for="currency in info"
+              :key="currency.id"
+              :value="currency.CharCode"
+              v-b-tooltip.hover
+              :title="currency.Name"
+            >
+              {{ currency.CharCode }}
+            </option>
+          </select>
+        </div>
         <button class="arrows" @click="swapValute()"></button>
-        <input
-          type="text"
-          class="value-converter"
-          placeholder="0"
-          @keyup="(e) => calcInput2(e)"
-          @input="filterInput2"
-          maxlength="8"
-          :value="calc2"
-        />
-        <select
-          class="icon-converter"
-          :value="valute2"
-          @change="(e) => changeValute2(e)"
-        >
-          <option
-            class="option-valute"
-            v-for="currency in info"
-            :key="currency.id"
-            :value="currency.CharCode"
-            v-b-tooltip.hover
-            :title="currency.Name"
+        <div class="valute2">
+          <input
+            type="text"
+            class="value-converter"
+            placeholder="0"
+            @keyup="(e) => calcInput2(e)"
+            @input="filterInput2"
+            maxlength="8"
+            :value="calc2"
+          />
+          <select
+            class="icon-converter"
+            :value="valute2"
+            @change="(e) => changeValute2(e)"
           >
-            {{ currency.CharCode }}
-          </option>
-        </select>
+            <option
+              class="option-valute"
+              v-for="currency in info"
+              :key="currency.id"
+              :value="currency.CharCode"
+              v-b-tooltip.hover
+              :title="currency.Name"
+            >
+              {{ currency.CharCode }}
+            </option>
+          </select>
+        </div>
       </div>
     </div>
   </div>
@@ -202,69 +206,160 @@ export default {
 </script>
 
 <style scoped>
-/*---- блок с конвертером ----*/
-.converter-block {
-  margin-top: 10%;
-  display: flex;
-  justify-content: center;
+@media (min-width: 1200px) {
+  /*---- блок с конвертером ----*/
+  .converter-block {
+    margin-top: 10%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .valute1 {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  /*---- поле цены ----*/
+  .value-converter {
+    width: 50%;
+    height: 152px;
+    margin: 0% 0% 0% 1%;
+    border-radius: 25px;
+    background-color: rgba(255, 255, 255, 0.8);
+    font-size: 60px;
+    color: #1e1e1e;
+    text-align: center;
+    border-color: rgba(255, 255, 255, 0.8);
+    font-weight: bold;
+  }
+
+  .value-converter:focus {
+    outline: none;
+    border-color: #a2ff30;
+    border-width: 3px;
+  }
+
+  /*---- поле валюты ----*/
+  .icon-converter {
+    width: 35%;
+    height: 155px;
+    margin: 0% 1% 0% 1%;
+    border-radius: 25px;
+    background: #d9d9d9;
+    font-size: 60px;
+    font-weight: bold;
+    color: #afff4e;
+    background-color: rgba(217, 217, 217, 0.5);
+    cursor: pointer;
+    text-align: center;
+    appearance: none; /* убрать стрелку у выбора валют */
+  }
+
+  .icon-converter:focus {
+    outline: none;
+    border-color: #a2ff30;
+    border-width: 3px;
+  }
+
+  .option-valute {
+    color: #7a7a7a;
+    background-color: #1e1e1e;
+  }
+
+  /*---- стрелки ----*/
+  .arrows {
+    border: none;
+    width: 15%;
+    box-shadow: none;
+    background-image: url('../assets/reverse.png');
+    background-size: contain;
+    background-color: transparent;
+    cursor: pointer;
+    outline: none;
+    background-repeat: no-repeat;
+  }
 }
 
-/*---- поле цены ----*/
-.value-converter {
-  width: 20%;
-  margin: 0% 0% 0% 1%;
-  border-radius: 25px;
-  background-color: rgba(255, 255, 255, 0.8);
-  font-size: 60px;
-  color: #1e1e1e;
-  text-align: center;
-  border-color: rgba(255, 255, 255, 0.8);
-  font-weight: bold;
-}
+@media (min-width: 300px) and (max-width: 1199.98px) {
+  /*---- блок с конвертером ----*/
+  .converter-block {
+    margin-top: 20%;
+    margin-left: 10%;
+    margin-right: 10%;
+  }
 
-.value-converter:focus {
-  outline: none;
-  border-color: #a2ff30;
-  border-width: 3px;
-}
+  /*---- поле цены ----*/
+  .value-converter {
+    width: 60%;
+    height: 76px;
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.8);
+    font-size: 170%;
+    color: #1e1e1e;
+    text-align: center;
+    border-color: #ffffffcc;
+    font-weight: bold;
+  }
 
-/*---- поле валюты ----*/
-.icon-converter {
-  width: 15%;
-  height: 155px;
-  margin: 0% 1% 0% 1%;
-  border-radius: 25px;
-  background: #d9d9d9;
-  font-size: 60px;
-  font-weight: bold;
-  color: #afff4e;
-  background-color: rgba(217, 217, 217, 0.5);
-  cursor: pointer;
-  text-align: center;
-  appearance: none; /* убрать стрелку у выбора валют */
-}
+  .value-converter:focus {
+    outline: none;
+    border-color: #a2ff30;
+    border-width: 1.5px;
+  }
 
-.icon-converter:focus {
-  outline: none;
-  border-color: #a2ff30;
-  border-width: 3px;
-}
+  .valute1 {
+    display: flex;
+    justify-content: center;
+  }
 
-.option-valute {
-  color: #7a7a7a;
-  background-color: #1e1e1e;
-}
+  .valute2 {
+    display: flex;
+    justify-content: center;
+  }
 
-/*---- стрелки ----*/
-.arrows {
-  border: none;
-  width: 10%;
-  box-shadow: none;
-  background-image: url('../assets/reverse.png');
-  background-size: contain;
-  background-color: transparent;
-  cursor: pointer;
-  outline: none;
-  background-repeat: no-repeat;
+  /*---- поле валюты ----*/
+  .icon-converter {
+    width: 30%;
+    height: 80px;
+    margin: 0% 0% 0% 5%;
+    border-radius: 15px;
+    background: #d9d9d9;
+    font-size: 240%;
+    font-weight: bold;
+    color: #afff4e;
+    background-color: rgba(217, 217, 217, 0.5);
+    cursor: pointer;
+    text-align: center;
+    appearance: none; /* убрать стрелку у выбора валют */
+  }
+
+  .icon-converter:focus {
+    outline: none;
+    border-color: #a2ff30;
+    border-width: 3px;
+  }
+
+  .option-valute {
+    color: #7a7a7a;
+    background-color: #1e1e1e;
+  }
+
+  /*---- стрелки ----*/
+  .arrows {
+    border: none;
+    width: 90px;
+    height: 81px;
+    margin-left: 70%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    box-shadow: none;
+    background-image: url('../assets/reverse.png');
+    transform: rotate(90deg);
+    background-size: contain;
+    background-color: transparent;
+    cursor: pointer;
+    outline: none;
+    background-repeat: no-repeat;
+  }
 }
 </style>
