@@ -274,6 +274,7 @@ export default {
     background-image: url('../assets/reverse.png');
     background-size: contain;
     background-color: transparent;
+    background-position: center;
     cursor: pointer;
     outline: none;
     background-repeat: no-repeat;
