@@ -191,18 +191,19 @@ export default {
   }
 
   table {
-    border-spacing: 10px 15px;
+    border-spacing: 10px;
+    border-collapse: separate;
+    margin: -10px;
   }
+
   /*---- заголовки ----*/
   .title-table1 {
-    font-size: 120%;
+    font-size: 105%;
     color: #afff4e;
     text-align: center;
   }
   .title-table2 {
-    font-size: 120%;
-    color: #afff4e;
-    text-align: center;
+    display: none;
   }
 
   .value-table {
