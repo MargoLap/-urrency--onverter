@@ -12,63 +12,98 @@
   </div>
   <div v-else>
     <span v-if="loading" class="loader"></span>
-    <div v-else class="table-valute">
-      <table>
-        <tr class="title-table1">
-          <th>ЦЕНА В RUB</th>
-          <th>ВАЛЮТА</th>
-        </tr>
-        <tr
-          v-for="currency in info"
-          :key="currency.id"
-          :class="{ 'hide-string': !DistrToColumns(currency.SerialNum) }"
+    <div v-else>
+      <h1 class="advice">ВЫБЕРЕТЕ ВАЛЮТУ</h1>
+      <div class="valute-selection">
+        <select
+          class="icon-valute"
+          :value="valute.CharCode"
+          @change="(e) => changeValute(e)"
         >
-          <td v-if="DistrToColumns(currency.SerialNum)" class="value-table">
-            {{
-              (
-                Math.floor((currency.Value / currency.Nominal) * 100000) /
-                100000
-              ).toFixed(5)
-            }}
-          </td>
-          <td
-            v-if="DistrToColumns(currency.SerialNum)"
-            v-b-tooltip.d5
+          <option
+            class="option-valute"
+            v-for="currency in info"
+            :key="currency.id"
+            :value="currency.CharCode"
+            v-b-tooltip.hover
             :title="currency.Name"
-            class="icon-table"
           >
             {{ currency.CharCode }}
-          </td>
-        </tr>
-      </table>
-      <table>
-        <tr class="title-table2">
-          <th>ЦЕНА В RUB</th>
-          <th>ВАЛЮТА</th>
-        </tr>
-        <tr
-          v-for="currency in info"
-          :key="currency.id"
-          :class="{ 'hide-string': DistrToColumns(currency.SerialNum) }"
-        >
-          <td v-if="!DistrToColumns(currency.SerialNum)" class="value-table">
-            {{
-              (
-                Math.floor((currency.Value / currency.Nominal) * 100000) /
-                100000
-              ).toFixed(5)
-            }}
-          </td>
-          <td
-            v-if="!DistrToColumns(currency.SerialNum)"
-            v-b-tooltip.d5
-            :title="currency.Name"
-            class="icon-table"
+          </option>
+        </select>
+      </div>
+      <div class="table-valute">
+        <table>
+          <tr class="title-table1">
+            <th>{{ `ЦЕНА В ${valute.CharCode}` }}</th>
+            <th>ВАЛЮТА</th>
+          </tr>
+          <tr
+            v-for="currency in info"
+            :key="currency.id"
+            :class="{
+              'hide-string':
+                !DistrToColumns(currency.SerialNum) ||
+                CheckValute(currency.CharCode),
+            }"
           >
-            {{ currency.CharCode }}
-          </td>
-        </tr>
-      </table>
+            <td v-if="DistrToColumns(currency.SerialNum)" class="value-table">
+              {{
+                (
+                  Math.floor(
+                    ((1 * currency.Nominal * currency.Value) /
+                      (valute.Nominal * valute.Value)) *
+                      100000
+                  ) / 100000
+                ).toFixed(5)
+              }}
+            </td>
+            <td
+              v-if="DistrToColumns(currency.SerialNum)"
+              v-b-tooltip.d5
+              :title="currency.Name"
+              class="icon-table"
+            >
+              {{ currency.CharCode }}
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr class="title-table2">
+            <th>{{ `ЦЕНА В ${valute.CharCode}` }}</th>
+            <th>ВАЛЮТА</th>
+          </tr>
+          <tr
+            v-for="currency in info"
+            :key="currency.id"
+            :class="{
+              'hide-string':
+                DistrToColumns(currency.SerialNum) ||
+                CheckValute(currency.CharCode),
+            }"
+          >
+            <td v-if="!DistrToColumns(currency.SerialNum)" class="value-table">
+              {{
+                (
+                  Math.floor(
+                    ((1 * currency.Nominal * currency.Value) /
+                      (valute.Nominal * valute.Value)) *
+                      100000
+                  ) / 100000
+                ).toFixed(5)
+              }}
+            </td>
+            <td
+              v-if="!DistrToColumns(currency.SerialNum)"
+              v-b-tooltip.d5
+              :title="currency.Name"
+              class="icon-table"
+            >
+              {{ currency.CharCode }}
+            </td>
+          </tr>
+        </table>
+      </div>
     </div>
   </div>
 </template>
@@ -77,10 +112,37 @@
 export default {
   name: 'CurrencyTable',
   props: ['loading', 'info', 'errored'],
+  data() {
+    return {
+      valute: {
+        ID: 'R09409F',
+        NumCode: '673',
+        CharCode: 'RUB',
+        Nominal: 1,
+        Name: 'Российский рубль',
+        Value: 1,
+        Previous: 1,
+        SerialNum: 44,
+      },
+      // valute: 'RUB',
+    };
+  },
   methods: {
     DistrToColumns(ind) {
       if (ind <= Object.keys(this.info).length / 2) return true;
       else return false;
+    },
+    changeValute(e) {
+      for (let key in this.info) {
+        if (e.target.value === this.info[key].CharCode) {
+          this.valute = this.info[key]; // смена валюты
+        }
+      }
+    },
+    CheckValute(e) {
+      if (e == this.valute.CharCode) {
+        return true;
+      } else return false;
     },
   },
 };
@@ -113,6 +175,7 @@ export default {
     margin-bottom: 20%;
     display: flex;
     justify-content: center;
+    align-items: flex-start;
   }
 
   table {
@@ -159,6 +222,46 @@ export default {
     cursor: default;
     text-align: center;
   }
+
+  .advice {
+    margin-top: 6%;
+    text-align: center;
+    font-size: 300%;
+    color: #afff4e;
+  }
+
+  .valute-selection {
+    margin-top: 1%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .icon-valute {
+    width: 25%;
+    height: 100px;
+    position: center;
+    border-radius: 25px;
+    background: #d9d9d9;
+    font-size: 300%;
+    font-weight: bold;
+    color: #afff4e;
+    background-color: rgba(217, 217, 217, 0.5);
+    cursor: pointer;
+    text-align: center;
+    appearance: none; /* убрать стрелку у выбора валют */
+  }
+
+  .icon-valute:focus {
+    outline: none;
+    border-color: #a2ff30;
+    border-width: 3px;
+  }
+
+  .option-valute {
+    color: #7a7a7a;
+    background-color: #1e1e1e;
+    font-size: 100%;
+  }
 }
 
 @media (min-width: 300px) and (max-width: 1199.98px) {
@@ -178,7 +281,7 @@ export default {
     cursor: pointer; /* смена курсора при наведении */
   }
 
-  .update-button:hover {
+  .update-button:active {
     box-shadow: 0px 0px 15px 0px #b6f865; /* свечение */
   }
 
@@ -235,6 +338,44 @@ export default {
     cursor: default;
     text-align: center;
     align-items: center;
+  }
+
+  .advice {
+    margin-top: 6%;
+    text-align: center;
+    font-size: 150%;
+  }
+
+  .valute-selection {
+    margin-top: 1%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .icon-valute {
+    width: 50%;
+    height: 65px;
+    position: center;
+    border-radius: 15px;
+    background: #d9d9d9;
+    font-size: 200%;
+    font-weight: bold;
+    color: #afff4e;
+    background-color: rgba(217, 217, 217, 0.5);
+    cursor: pointer;
+    text-align: center;
+    appearance: none; /* убрать стрелку у выбора валют */
+  }
+
+  .icon-valute:focus {
+    outline: none;
+    border-color: #a2ff30;
+    border-width: 2px;
+  }
+
+  .option-valute {
+    color: #7a7a7a;
+    background-color: #1e1e1e;
   }
 }
 </style>
