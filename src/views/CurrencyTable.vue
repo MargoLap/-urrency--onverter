@@ -28,7 +28,11 @@
             v-b-tooltip.hover
             :title="currency.Name"
           >
-            {{ currency.CharCode }}
+            {{
+              isSingleCurrencySelected(currency)
+                ? currency.CharCode
+                : `${currency.CharCode} ${currency.Name}`
+            }}
           </option>
         </select>
       </div>
@@ -124,13 +128,18 @@ export default {
         Previous: 1,
         SerialNum: 44,
       },
-      // valute: 'RUB',
     };
   },
   methods: {
     DistrToColumns(ind) {
-      if (ind <= Object.keys(this.info).length / 2) return true;
-      else return false;
+      //чтобы второй столбец содержал меньше валют (так логичнее)
+      if (this.valute.SerialNum <= Object.keys(this.info).length / 2) {
+        if (ind <= Object.keys(this.info).length / 2 + 1) return true;
+        else return false;
+      } else {
+        if (ind <= Object.keys(this.info).length / 2) return true;
+        else return false;
+      }
     },
     changeValute(e) {
       for (let key in this.info) {
@@ -143,6 +152,9 @@ export default {
       if (e == this.valute.CharCode) {
         return true;
       } else return false;
+    },
+    isSingleCurrencySelected(currency) {
+      return this.valute.CharCode === currency.CharCode;
     },
   },
 };
@@ -255,6 +267,7 @@ export default {
     outline: none;
     border-color: #a2ff30;
     border-width: 3px;
+    /* text-align: left; */
   }
 
   .option-valute {
