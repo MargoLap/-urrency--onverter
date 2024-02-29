@@ -28,11 +28,7 @@
             v-b-tooltip.hover
             :title="currency.Name"
           >
-            {{
-              isSingleCurrencySelected(currency)
-                ? currency.CharCode
-                : `${currency.CharCode} ${currency.Name}`
-            }}
+            {{ `${currency.Name}` }}
           </option>
         </select>
       </div>
@@ -153,9 +149,6 @@ export default {
         return true;
       } else return false;
     },
-    isSingleCurrencySelected(currency) {
-      return this.valute.CharCode === currency.CharCode;
-    },
   },
 };
 </script>
@@ -249,12 +242,12 @@ export default {
   }
 
   .icon-valute {
-    width: 25%;
+    width: 70%;
     height: 100px;
     position: center;
     border-radius: 25px;
     background: #d9d9d9;
-    font-size: 300%;
+    font-size: 200%;
     font-weight: bold;
     color: #afff4e;
     background-color: rgba(217, 217, 217, 0.5);
@@ -267,7 +260,6 @@ export default {
     outline: none;
     border-color: #a2ff30;
     border-width: 3px;
-    /* text-align: left; */
   }
 
   .option-valute {
@@ -371,7 +363,8 @@ export default {
     position: center;
     border-radius: 15px;
     background: #d9d9d9;
-    font-size: 200%;
+    font-size: 100%;
+    hyphens: auto;
     font-weight: bold;
     color: #afff4e;
     background-color: rgba(217, 217, 217, 0.5);
